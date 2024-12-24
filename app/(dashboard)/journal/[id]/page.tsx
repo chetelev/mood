@@ -16,7 +16,8 @@ const getEntry = async (id) => {
 };
 
 const EntryPage = async ({ params }) => {
-  const entry = await getEntry(params.id);
+  const { id } = await params;
+  const entry = await getEntry(id);
   const analysisData = [
     { name: "Subject", value: "" },
     { name: "Summary", value: "" },
@@ -35,7 +36,10 @@ const EntryPage = async ({ params }) => {
         <div>
           <ul>
             {analysisData.map((item) => (
-              <li className="px-2 py-4 flex items-center justify-between border-t border-black/10" key={item.name}>
+              <li
+                className="px-2 py-4 flex items-center justify-between border-t border-black/10"
+                key={item.name}
+              >
                 <span className="text-lg font-semibold">{item.name}</span>
                 <span>{item.value}</span>
               </li>
