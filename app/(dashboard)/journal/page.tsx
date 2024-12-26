@@ -1,6 +1,6 @@
 import EntryCard from "@/components/EntryCard";
 import NewEntryCard from "@/components/NewEntryCard";
-import { analyze } from "@/lib/ai";
+import Question from "@/components/Question";
 import { getUserByClerkId } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -16,7 +16,6 @@ const getEntries = async () => {
     },
   });
 
-  await analyze("Today was eh, ok day i guess. I found a new coffe shop that was cool but then i got a flat tire.")
   return entries;
 };
 
@@ -25,6 +24,9 @@ const JournalPage = async () => {
   return (
     <div className="p-8 bg-zinc-400/10 ">
       <h2 className="text-3xl mb-8">Journal</h2>
+      <div className="my-8">
+        <Question></Question>
+      </div>
       <div className="grid grid-cols-3 gap-4">
         <NewEntryCard />
         {entries.map((entry) => (
